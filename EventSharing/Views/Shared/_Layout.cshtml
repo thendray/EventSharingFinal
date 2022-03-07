@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    @if (ViewBag.Title != null)
+    {
+        <title>@ViewBag.Title</title>
+    }
+    else
+    {
+        <title>EventSharing</title>
+    }
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+
+<body>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=2350f02c-be5e-4dd3-9e0b-8ca7db5d7676"></script>
+    <div class="wrapper">
+
+        @await Html.PartialAsync("HeaderPartial")
+
+        <main>
+
+            @RenderBody()
+
+        </main>
+
+        <div class="bottom_container">
+            @await Html.PartialAsync("FooterPartial")
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/js/script.js"></script>
+</body>
+</html>
+

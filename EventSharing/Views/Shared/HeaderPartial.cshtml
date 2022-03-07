@@ -1,0 +1,48 @@
+﻿
+
+<header class="header">
+    <div class="container">
+        <div class="header_body">
+            <a href="#" class="header_logo">
+                <span class="event">EVENT</span><span class="sharing">SHARING</span>
+            </a>
+            <nav class="header_menu">
+                <uv class="header_list">
+                    <li>
+                        <a class="header_link" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+                    </li>
+                    <li>
+                        <a class="header_link" asp-area="" asp-controller="SearchMap" asp-action="Map">BROWSE EVENTS</a>
+                    </li>
+                    @{
+                        if (CurentUser.CurentLogInUserId != 0)
+                        {
+                            <li>
+                                <a class="header_link" asp-area="" asp-controller="Post" asp-action="Post">POST EVENTS</a>
+                            </li>
+                            <li>
+                                <a class="header_link" asp-area="" asp-controller="Home" asp-action="LogOut">LOG OUT</a>
+                            </li>
+                            <li>
+                                <a class="header_link" asp-area="" asp-controller="Account" asp-action="Account">ACCOUNT</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="header_link" asp-area="" asp-controller="Autorisation" asp-action="Autorisation">SIGN IN</a>
+                            </li>
+                            <li>
+                                <a class="header_link" asp-area="" asp-controller="Registr" asp-action="Registration">REGISTER</a>
+                            </li>
+                        }
+                    }
+                </uv>
+            </nav>
+            <div class="header_burger">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+</header>

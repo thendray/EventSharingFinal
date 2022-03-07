@@ -1,0 +1,52 @@
+﻿@model Event
+
+<div class="post">
+    <link rel="stylesheet" href="~/css/post.css">
+    <h2>Публикация событий</h2>
+    <form class="post_form" asp-controller="Post" asp-action="Post" method="post">
+        <div class="check">
+            <div class="row">
+                <div class="group">
+                    <label for="">Введите название события</label>
+                    <input asp-for="Name" type="text" placeholder="Название события">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <label for="">Введите адресс события</label>
+                    <input asp-for="Adress" type="text" placeholder="Адресс события">
+                    <span asp-validation-for="Adress" class="text-danger"></span>
+
+                </div>
+                <div class="group">
+                    <label for="">Время начала события</label><input asp-for="StartTime" type="datetime-local">
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+                <div class="group">
+                    <label for="">Время окончания события</label><input asp-for="EndTime" type="datetime-local">
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="group">
+                    <label for="">Описание события</label>
+                    <textarea asp-for="EventType"></textarea>
+                    <span asp-validation-for="EventType" class="text-danger"></span>
+                </div>
+                <div class="group">
+                    <label for="">Загрузить изображения</label>
+                    <input type="file" id="file" name="file" multiple accept="image/*">
+                </div>
+            </div>
+
+        </div>
+        <input type="submit" value="Опубликовать">
+        @{
+            if (ViewBag.IsPosted == true)
+            {
+                <h1 style="color:gold; font-size:15px; ">Мероприятие зарегестрировано!</h1>
+            }
+        }
+    </form>
+    
+</div>

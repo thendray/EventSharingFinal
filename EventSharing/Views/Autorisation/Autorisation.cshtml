@@ -1,0 +1,27 @@
+﻿@model User
+
+<div class="form_container">
+    <form asp-controller="Autorisation" asp-action="Autorisation" method="post">
+        <h1>Вход</h1>
+
+        <div class="group">
+            <label for="Login">Логин пользователя</label>
+            <input type="text" asp-for="Login">
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+
+        <div class="group">
+            <label for="Password">Пароль</label>
+            <input type="password" asp-for="Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="group">
+            <center><input type="submit" value="Войти"></center>
+        </div>
+
+        <p class="msg">
+
+        </p>
+    </form>
+</div>

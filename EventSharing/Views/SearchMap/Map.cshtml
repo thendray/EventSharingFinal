@@ -1,0 +1,144 @@
+﻿@model MapInfo
+
+
+<div class="browse">
+    <link href="~/css/brose.css" rel="stylesheet" type="text/css" />
+
+    <div id="map" class="map">
+        @await Html.PartialAsync("TypesFormPartial")
+        @await Html.PartialAsync("ThemesFormPartial")
+        @await Html.PartialAsync("PopupFormPartial")
+    </div>
+
+
+    <div class="filters_container">
+        <form class="filters" asp-controller="SearchMap" asp-action="Map" method="post">
+
+            <div class=" group">
+                <label for="">Поиск</label>
+                <input asp-for="Name" type="text">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <hr />
+            <button class="choose_type" type="button">
+                <div class="block">
+                    <img class="arrow" src="~/img/arrow.png"><a>Тип события</a>
+                </div>
+            </button>
+            <hr />
+            <button class="choose_themes" type="button">
+                <div class="block">
+                    <img class="arrow" src="~/img/arrow.png"><a>Тематика</a>
+                </div>
+            </button>
+            <hr />
+            <button class="choose_target" type="button">
+                <div class="block">
+                    <img class="arrow" src="~/img/arrow.png"><a>Целевая аудитория</a>
+                </div>
+            </button>
+            <hr />
+            <input type="submit" value="Найти">
+
+        </form>
+    </div>
+
+</div>
+
+
+
+<script>
+    var first = 55.75393652941937;
+    var second = 37.649779078039046;
+    var m;
+
+
+    function init() {
+
+        var map = new ymaps.Map('map', {
+            center: [first, second],
+            zoom: 18
+        });
+
+
+        map.controls.remove('geolocationControl'); // удаляем геолокацию
+        map.controls.remove('searchControl'); // удаляем поиск
+        map.controls.remove('trafficControl'); // удаляем контроль трафика
+        map.controls.remove('typeSelector'); // удаляем тип
+        map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+        map.controls.remove('rulerControl'); // удаляем контрол правил
+
+        m = map;
+        if (@ViewBag.Count > 0) {
+            var Names =  @Html.Raw(MapInfo.Serialize(CurentEvent.Names)) ;
+            var Adresses = @Html.Raw(MapInfo.Serialize(CurentEvent.Adresses)) ;
+            var StartTimes = @Html.Raw(MapInfo.Serialize(CurentEvent.StartsTime)) ;
+            var HourDuration = @Html.Raw(MapInfo.Serialize(CurentEvent.HourDurations)) ;
+            var Informations = @Html.Raw(MapInfo.Serialize(CurentEvent.Informations)) ;
+
+            ClickFunc(Names, Adresses, StartTimes, HourDuration, Informations);
+        }
+
+    }
+
+    ymaps.ready(init);
+
+
+    function ClickFunc(Names, Adresses, StartTimes, HourDuration, Informations) {
+
+        m.geoObjects.removeAll();
+
+        var objects = ymaps.geoQuery();
+
+        for (let i = 0; i < 2; i++) {
+
+            objects = objects.add(ymaps.geocode(`${Adresses[i]}`));
+        }
+        objects.addToMap(m);
+
+
+        
+        // Создаем коллекцию геообъектов, в котором будут находиться эти адреса
+        var geoObjectsCollection = new ymaps.GeoObjectCollection();
+
+        var count = 0;
+        // После того, как поиск вернул результат, вызывается callback-функция
+        objects.then(function() {
+
+            // добавляем координаты адресов в коллекцию geoObjectsCollection
+            objects.each(function (object) {
+
+                
+                var coordinates = object.geometry.getCoordinates();
+
+                if (count < Names.length) {
+                    geoObjectsCollection.add(
+                        new ymaps.Placemark(coordinates,
+                            {
+                                hintContent: Names[0],
+                                balloonContentHeader: Names[count],
+                                balloonContentBody: Informations[count] + `   \n Время начала: ${StartTimes[count]}`,
+                                balloonContentFooter: Adresses[count] + `.   Длительность: ${ HourDuration[count]} ч.`
+                            })
+                    );
+                }
+
+                count = count + 1;
+            });
+
+            // Добавляем коллекцию геообъектов на карту
+            m.geoObjects.add(geoObjectsCollection);
+
+            // Спозиционируем карту так, чтобы на ней были видны все объекты.
+            
+            m.setBounds(geoObjectsCollection.getBounds(), {
+                checkZoomRange: true,
+                zoomMargin: 20
+            });
+            
+
+        });
+
+        
+    }
+</script>

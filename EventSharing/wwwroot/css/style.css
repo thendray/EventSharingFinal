@@ -1,18 +1,25 @@
 *{
 	margin: 0;
 	padding: 0;
+
 }
 a{
 	text-decoration: none;
 }
 
+html {
+	background: rgb(0, 63, 63);
+}
+
 body{
 	font-family: 'Montserrat';
 	font-size:20px;
-	height: 100%;
+	width: 100%;
+	min-height: 90%;
+
 }
-.wrapper{
-	
+.wrapper {
+	height:100%;
 }
 
 footer {
@@ -28,6 +35,7 @@ footer {
 .container{
 	margin: 0 auto;
 	padding: 0px 20px;
+	height: 100%;
 }
 
 .header{
@@ -149,6 +157,7 @@ main .team h1{
 
 
 .photo{
+	
 	background: gray;
 	width: 125px;
 	height: 125px;
@@ -425,6 +434,8 @@ textarea{
 
 
 .bottom_container {
+	width: 100%;
+	height: 200%;
 	flex: 0 0 auto;
 	width: 100%;
 	z-index: 50;

@@ -156,13 +156,13 @@ main .team h1{
 }
 
 
-.photo{
-	
-	background: gray;
-	width: 125px;
-	height: 125px;
-	margin: 20px auto;
+.photo {
 	border-radius: 50%;
+	margin: 20px auto;
+	height: 0px;
+	padding-top: 130%;
+	position: relative;
+	display: block;
 }
 
 .team_cards{
@@ -439,7 +439,7 @@ textarea{
 	flex: 0 0 auto;
 	width: 100%;
 	z-index: 50;
-	background: #007573;
+	background-color: darkcyan;
 	background-image: url(/img/header_image.png);
 	background-size: cover;
 	background-blend-mode: lighten;

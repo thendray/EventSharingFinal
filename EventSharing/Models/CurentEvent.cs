@@ -19,6 +19,7 @@ namespace EventSharing.Models
 
         public static bool EventsInBase(MapInfo map, MyAppDbContext db)
         {
+            
             var events = db.Events.Where(x => (x.Name.Contains(map.Name) || map.Name.Contains(x.Name)));
             if (events.Count() > 0)
             {

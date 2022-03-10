@@ -13,7 +13,7 @@
                         <a class="header_link" asp-area="" asp-controller="SearchMap" asp-action="Map">BROWSE EVENTS</a>
                     </li>
                     @{
-                        if (CurentUser.CurentLogInUserId != 0 || true)
+                        if (CurentUser.CurentLogInUserId != 0)
                         {
                             <li>
                                 <a class="header_link" asp-area="" asp-controller="Post" asp-action="Post">POST EVENTS</a>

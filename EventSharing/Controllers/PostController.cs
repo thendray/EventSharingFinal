@@ -47,6 +47,11 @@ namespace EventSharing.Controllers
                 ModelState.AddModelError(nameof(event1.EndTime), "Введите дату и время окончания");
             }
 
+            if (event1.EndTime < event1.StartTime)
+            {
+                ModelState.AddModelError(nameof(event1.EndTime), "Дата окончания не может быть раньше даты начала");
+            }
+
             if (string.IsNullOrEmpty(event1.EventType))
             {
                 ModelState.AddModelError(nameof(event1.EventType), "Введите краткую информацию");
@@ -54,8 +59,9 @@ namespace EventSharing.Controllers
 
             if (ModelState.IsValid)
             {
-
-                event1.UserId = CurentUser.CurentId;
+                CurentUser.CurentUserInfo.QuantityEventsLoad += 1;
+                db.Users.Where(x => x == CurentUser.CurentUserInfo).First().QuantityEventsLoad = CurentUser.CurentUserInfo.QuantityEventsLoad;
+                event1.UserId = CurentUser.CurentUserInfo.UserId;
                 db.Events.Add(event1);
                 db.SaveChanges();
                 ViewBag.IsPosted = true;

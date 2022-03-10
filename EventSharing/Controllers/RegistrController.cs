@@ -66,15 +66,13 @@ namespace EventSharing.Controllers
 
             if (ModelState.IsValid)
             {
-
-                CurentUser.CurentId += 1;
-               // user1.UserId = CurentUser.CurentId;
-                CurentUser.CurentLogInUserId = CurentUser.CurentId;
-                CurentUser.CurentUserInfo = user1;
-
+                user1.QuantityEventsLoad = 0;
+                /*user1.Password = */
                 db.Users.Add(user1);
                 db.SaveChanges();
 
+                CurentUser.CurentUserInfo = db.Users.Where(x => x.Login == user1.Login).First();
+                CurentUser.CurentLogInUserId = CurentUser.CurentUserInfo.UserId;
                 return View("~/Views/Home/Index.cshtml");
             }
             else

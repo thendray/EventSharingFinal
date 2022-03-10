@@ -31,8 +31,11 @@ namespace EventSharing.Controllers
             {
                 ModelState.AddModelError(nameof(map.Name), "Вы ничего не ввели");
             }
-
-            else if (CurentEvent.EventsInBase(map, db))
+            if (CurentEvent.EventsInBase(map, db) == false)
+            {
+                ModelState.AddModelError(nameof(map.Name), "По вашему запросу ничего не найдено");
+            }
+            else
             {
                 CurentEvent.Names = CurentEvent.FindEvents.Select(x => x.Name).ToList();
                 CurentEvent.Adresses = CurentEvent.FindEvents.Select(x => x.Adress).ToList();

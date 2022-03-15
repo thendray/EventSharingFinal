@@ -9,6 +9,7 @@ a{
 
 html {
 	background: rgb(0, 63, 63);
+	font-family: 'Montserrat';
 }
 
 body{
@@ -27,7 +28,6 @@ footer {
 	width: 100%;
 	z-index: 50;
 	background: #007573;
-	background-image: url(/img/header_image.png);
 	background-size: cover;
 	background-blend-mode: lighten;
 }
@@ -117,19 +117,41 @@ main .intro{
 	background-image: url(/img/intro_image.png);
 	background-blend-mode: color-dodge;
 	background-size: cover;
+	font-size: 18px;
 }
 
 main .intro h1{
 	color: #fff;
-	font-size: 30px;
+	font-size: 18px;
 
 }
 main .intro p{
-	
-	font-size: 20px;
-	padding: 50px 10% 50px;
+	font-size: 18px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 }
+
+
+.wrap{
+	padding: 20px 50px 10px;
+
+}
+.intro ul{
+	padding-bottom: 10px;
+	list-style-type: disc;
+	padding-left: 20px;
+	font-size: 18px;
+}
+
+.intro li{
+	list-style-type: disc;
+	display: list-item;
+	font-size: 18px;
+}
+
+
+
 .event{
 	color: lightgreen;
 }
@@ -139,7 +161,7 @@ main .intro p{
 
 main .team{
 	text-align: center;
-	padding: 100px 10px 165px 10px;
+	padding: 30px 10px 50px;
 	color: black;
 	margin: 0 auto;
 }
@@ -156,13 +178,22 @@ main .team h1{
 }
 
 
-.photo {
-	border-radius: 50%;
+.photo{
+	width: 125px;
+	height: 125px;
 	margin: 20px auto;
-	height: 0px;
-	padding-top: 130%;
-	position: relative;
-	display: block;
+	border-radius: 50%;
+	background-size: 125px;
+
+}
+
+.photo img{
+	width: 125px;
+	height: 125px;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+
 }
 
 .team_cards{
@@ -311,7 +342,17 @@ hr {
 
 }
 
-
+.filters_container{
+	color: #fff;
+	width: 300px;
+	height: 100%;
+	text-align: center;
+}
+.filters{
+	width: 100%;
+	margin: 0 auto;
+	background: transparent;
+}
 
 ::placeholder{
 	color: rgb(195, 218, 218);
@@ -335,7 +376,8 @@ hr {
 
 textarea{
 	width: 100%;
-	height: 100px;
+	height: 200px;
+	rows:  50;
 }
 
 .popup_bg{
@@ -562,11 +604,18 @@ textarea{
 
 
 .footer{
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	display: inline-block;
 	text-align: center;
-	color: lightgreen;
+	background: rgb(0, 63, 63);
+	color: white;
+}
+
+.footer p{
+	margin: 10px;
+
 }
 
 

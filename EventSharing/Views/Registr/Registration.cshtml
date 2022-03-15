@@ -9,31 +9,31 @@
 
         <div class="group">
             <label for="">Имя пользователя</label>
-            <input type="text" asp-for="Name">
+            <input type="text" asp-for="Name" placeholder="Введите имя пользователя">
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="group">
             <label for="Login">Логин</label>
-            <input type="text" asp-for="Login" />
+            <input type="text" asp-for="Login" placeholder="Введите логин"/>
             <span asp-validation-for="Login" class="text-danger"></span>
         </div>
 
         <div class="group">
             <label for="Password">Пароль</label>
-            <input type="password" asp-for="Password">
+            <input type="password" asp-for="Password" placeholder="Введите пароль">
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
         <div class="group">
             <label for="PasswordConfirm">Подтверждение пароля</label>
-            <input type="password" asp-for="PasswordConfirm">
+            <input type="password" asp-for="PasswordConfirm" placeholder="Подтвердите пароль">
             <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
         </div>
 
         <div class="group">
             <label for="Email">Почта</label>
-            <input type="email" asp-for="Email">
+            <input type="email" asp-for="Email" placeholder="Введите адрес электронной почты">
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
